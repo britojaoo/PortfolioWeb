@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import logo from '../../assets/logoiconjoaobrito.svg';
 import './Navbar.css';
 
 interface NavbarProps {
-  logo?: string;
   brand?: string;
   menuItems?: Array<{
     label: string;
@@ -13,15 +13,13 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({
-  logo,
-  brand = "Sua Marca",
+  brand = "João Brito | Portfolio",
   menuItems = [
     { label: "Início", href: "#home", isActive: true },
     { label: "Sobre",  href: "#about" },
     { label: "Serviços", href: "#services" },
     { label: "Contato", href: "#contact" }
   ],
-  showAuth = true
   
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,13 +35,11 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav className="navbar">
       <div className="navbar-container">
+
         {/* Logo/Brand */}
         <div className="navbar-brand">
-          {logo ? (
-            <img src={logo} alt={brand} className="navbar-logo" />
-          ) : (
-            <span className="navbar-brand-text">{brand}</span>
-          )}
+          <img src={logo} alt={brand} className="navbar-logo" />
+          <span className="navbar-brand-text">{brand}</span>
         </div>
 
         {/* Desktop Menu */}
@@ -60,14 +56,6 @@ const Navbar: React.FC<NavbarProps> = ({
             </li>
           ))}
         </ul>
-
-        {/* Auth Buttons */}
-        {showAuth && (
-          <div className="navbar-auth">
-            <button className="btn-login">Entrar</button>
-            <button className="btn-signup">Cadastrar</button>
-          </div>
-        )}
 
         {/* Mobile Menu Button */}
         <button 
@@ -94,17 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 {item.label}
               </a>
             </li>
-          ))}
-          {showAuth && (
-            <li className="navbar-mobile-item navbar-mobile-auth">
-              <button className="btn-login mobile" onClick={handleMenuItemClick}>
-                Entrar
-              </button>
-              <button className="btn-signup mobile" onClick={handleMenuItemClick}>
-                Cadastrar
-              </button>
-            </li>
-          )}
+          ))}    
         </ul>
       </div>
     </nav>
